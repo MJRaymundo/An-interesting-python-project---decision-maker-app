@@ -75,7 +75,6 @@ def add_item():
 #            continue
 #        else:
 #            break
-    print(ResourceDictionary[ResourceName][ResourceTier][ResourceFactor])
 #    max_value, max_key = max(((v,k) for inner_d in ResourceDictionary.values() for k,v in inner_d.items()))
 #    print("This is the result ",max_value, max_key)
 #    ResourceDictionary = dict(
@@ -122,9 +121,32 @@ def add_item():
 # Proccessing of data
 def decision_maker():
 #    print(ResourceDictionary, ResourceDictionary.get("Ore"))
-    FactorValue = ResourceDictionary.values()
-    BestResource = max(FactorValue)
-    print('The best resource to craft is :', BestResource)
+    while True:
+        try:
+            DecisionResourceName = str(input("What type of resource do you want to filter? :"))
+        except ValueError:
+            print("Invalid input.")
+            continue
+        else:
+            break
+    while True:
+        try:
+            DecisionResourceFactor = str(input("What factor do you want to filter it by? :"))
+        except ValueError:
+            print("Invalid input.")
+            continue
+        else:
+            break
+#    best = max(ResourceDictionary[DecisionResourceName][DecisionResourceFactor], key=lambda d: d[0])
+#    best = {key: max(val.values()) for key, val in ResourceDictionary.items()}
+    Name = {key: max(DecisionResourceFactor.values()) for key, DecisionResourceFactor in ResourceDictionary[DecisionResourceName].items()}
+    print(Name)
+    Best = max(zip(Name.keys(), Name.values()))
+    print(DecisionResourceName + 'filtered by' + DecisionResourceFactor,  Best)
+#    print(ResourceDictionary[DecisionResourceName]['2.0'][DecisionResourceFactor])
+#    print(best)
+#    max_value, max_key = max(((DecisionResourceName,DecisionResourceNameKey) for TierDictionary in ResourceDictionary.values() for DecisionResourceName,DecisionResourceNameKey in TierDictionary.values()))
+#    print("This is the result ",max_value, max_key)
 
 # ResourceDictionary[ResourceName[ResourceTier[ResourceFactor[FactorValue]]]]
 # Displaying of result

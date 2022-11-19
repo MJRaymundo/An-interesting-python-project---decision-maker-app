@@ -3,7 +3,9 @@
 # Idea: An app that helps make you decisions. Video link: https://www.youtube.com/watch?v=_xf1TMs0ysk from Tina Huang
 # Reason for choosing: A game I currently play has a gameplay feature of a crafting system, I want to create an app that would help me make a decision based on a few factors.
 # Taking in user input
-ResourceDictionary = {}
+ResourceNameDict = ['Ore', 'Wood', 'Fiber', 'Stone', 'Hide']
+ResourceTierDict = {'2.0' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '3.0' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '4.0' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '4.1' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '4.2' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '4.3' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '5.0' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '5.1' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '5.2' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '5.3' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '6.1' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '6.2' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '6.3' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '7.1' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '7.2' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '7.3' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '8.1' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '8.2' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}, '8.3' : {'Profit' : 0, 'SellVolume' : 0, 'DailyLimit' : 0, 'BuyVolume' : 0}}
+ResourceDictionary = dict.fromkeys(ResourceNameDict, ResourceTierDict)
 def add_item():
     while True:
         try:
@@ -23,7 +25,7 @@ def add_item():
             break
     while True:
         try:
-            Profit = input("Input Profit :")
+            ResourceFactor = str(input("Input Factor :"))
         except ValueError:
             print("Invalid input.")
             continue
@@ -31,34 +33,51 @@ def add_item():
             break
     while True:
         try:
-            SellVolume = int(input("Input SellVolume :"))
+            if ResourceFactor.upper() == 'PROFIT':
+                ProfitInput = int(input("Input Profit :"))
+                ResourceDictionary[ResourceName][ResourceTier][ResourceFactor] = ProfitInput
+            elif ResourceFactor.upper() == 'SELLVOLUME':
+                SellVolumeInput = int(input("Input SellVolume :"))
+                ResourceDictionary[ResourceName][ResourceTier][ResourceFactor] = SellVolumeInput
+            elif ResourceFactor.upper() == 'DAILYLIMIT':
+                DailyLimitInput = int(input("Input Profit :"))
+                ResourceDictionary[ResourceName][ResourceTier][ResourceFactor] = DailyLimitInput
+            elif ResourceFactor.upper() == 'BUYVOLUME':
+                BuyVolumeInput = int(input("Input Profit :"))
+                ResourceDictionary[ResourceName][ResourceTier][ResourceFactor] = BuyVolumeInput
         except ValueError:
             print("Invalid input.")
             continue
         else:
             break
-    while True:
-        try:
-            DailyLimit = int(input("Input DailyLimit :"))
-        except ValueError:
-            print("Invalid input.")
-            continue
-        else:
-            break
-    while True:
-        try:
-            BuyVolume = int(input("Input BuyVolume :"))
-        except ValueError:
-            print("Invalid input.")
-            continue
-        else:
-            break
-    ResourceName = ['Ore', 'Wood', 'Fiber', 'Stone', 'Hide']
-    ResourceTier = {'2.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '3.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}}
-    ResourceDictionary = dict.fromkeys(ResourceName, ResourceTier)
 
-    max_value, max_key = max(((v,k) for inner_d in ResourceDictionary.values() for k,v in inner_d.items()))
-    print("This is the result ",max_value, max_key)
+#    while True:
+#        try:
+#            SellVolumeInput = int(input("Input SellVolume :"))
+#        except ValueError:
+#            print("Invalid input.")
+#            continue
+#        else:
+#            break
+#    while True:
+#        try:
+#            DailyLimitInput = int(input("Input DailyLimit :"))
+#        except ValueError:
+#            print("Invalid input.")
+#            continue
+#        else:
+#            break
+#    while True:
+#        try:
+#            BuyVolumeInput = int(input("Input BuyVolume :"))
+#        except ValueError:
+#            print("Invalid input.")
+#            continue
+#        else:
+#            break
+    print(ResourceDictionary[ResourceName][ResourceTier][ResourceFactor])
+#    max_value, max_key = max(((v,k) for inner_d in ResourceDictionary.values() for k,v in inner_d.items()))
+#    print("This is the result ",max_value, max_key)
 #    ResourceDictionary = dict(
 #        Ore = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
 #        Wood = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
@@ -66,7 +85,6 @@ def add_item():
 #        Stone = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
 #        Hide = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]}
 #    )
-    print(ResourceDictionary)
     main_menu()
 #    while True:
 #        try:

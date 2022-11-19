@@ -72,7 +72,7 @@ def decision_maker():
     PrimaryFilter = {key: max(DecisionResourceFactor.values()) for key, DecisionResourceFactor in ResourceDictionary[DecisionResourceName].items()}
     BestResource = max(zip(PrimaryFilter.values(), PrimaryFilter.keys()))
     # Displaying of result
-    print(DecisionResourceName + ' filtered by ' + DecisionResourceFactor + ' Value, Resource Tier' +BestResource)
+    print(DecisionResourceName + ' filtered by ' + DecisionResourceFactor + ' = (Value, Resource Tier)', BestResource)
     main_menu()
 # Simple Menu
 def exit():

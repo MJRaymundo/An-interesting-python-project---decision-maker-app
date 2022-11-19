@@ -4,14 +4,10 @@
 # Reason for choosing: A game I currently play has a gameplay feature of a crafting system, I want to create an app that would help me make a decision based on a few factors.
 # Taking in user input
 ResourceDictionary = {}
-FactorValue = ""
-ResourceName = ""
-ResourceTier = ""
-ResourceFactor = ""
 def add_item():
     while True:
         try:
-            ResourceName = str(input("Name of resource? :"))
+            ResourceName = str(input("Input Name :"))
         except ValueError:
             print("Invalid input.")
             continue
@@ -19,7 +15,7 @@ def add_item():
             break
     while True:
         try:
-            ResourceTier = str(input("Tier and enchantment of resource? :"))
+            ResourceTier = str(input("Input Tier :"))
         except ValueError:
             print("Invalid input.")
             continue
@@ -27,41 +23,92 @@ def add_item():
             break
     while True:
         try:
-            ResourceFactor = str(input("Which resource factor? :"))
-            if ResourceFactor.upper() == "PROFIT":
-                FactorValue = int(input("Enter profit percentage: "))
-            elif ResourceFactor.upper() == "SELLVOLUME":
-                FactorValue = int(input("Enter sell volume: "))
-            elif ResourceFactor.upper() == "DAILYLIMIT":
-                FactorValue = int(input("Enter daily limit: "))
-            elif ResourceFactor.upper() == "BUYVOLUME":
-                FactorValue = int(input("Enter buyvolume: "))
+            Profit = input("Input Profit :")
         except ValueError:
             print("Invalid input.")
             continue
         else:
             break
-# Name of resource/item // Ore, Wood, Fiber, Stone, Hide //, Tier + Enchantment // T2.0 - T8.3 //, Factors that will affect the decision // Proft, SellVolume, DailyLimit, BuyVolume //
-def store_data():
-    ResourceDictionary ={
-        ResourceName : 
-        {
-            ResourceTier : 
-            {
-                ResourceFactor : FactorValue
-            }
-        }
-    }
+    while True:
+        try:
+            SellVolume = int(input("Input SellVolume :"))
+        except ValueError:
+            print("Invalid input.")
+            continue
+        else:
+            break
+    while True:
+        try:
+            DailyLimit = int(input("Input DailyLimit :"))
+        except ValueError:
+            print("Invalid input.")
+            continue
+        else:
+            break
+    while True:
+        try:
+            BuyVolume = int(input("Input BuyVolume :"))
+        except ValueError:
+            print("Invalid input.")
+            continue
+        else:
+            break
+    ResourceName = ['Ore', 'Wood', 'Fiber', 'Stone', 'Hide']
+    ResourceTier = {'2.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '3.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '4.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.0' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '5.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '6.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '7.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.1' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.2' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}, '8.3' : {Profit : 0, SellVolume : 0, DailyLimit : 0, BuyVolume : 0}}
+    ResourceDictionary = dict.fromkeys(ResourceName, ResourceTier)
+
+    max_value, max_key = max(((v,k) for inner_d in ResourceDictionary.values() for k,v in inner_d.items()))
+    print("This is the result ",max_value, max_key)
+#    ResourceDictionary = dict(
+#        Ore = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
+#        Wood = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
+#        Fiber = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
+#        Stone = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]},
+#        Hide = {'2.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '3.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '4.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.0' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '5.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '6.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '7.3' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.1' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.2' : [Profit, SellVolume, DailyLimit, BuyVolume], '8.3' : [Profit, SellVolume, DailyLimit, BuyVolume]}
+#    )
     print(ResourceDictionary)
-    print(ResourceName, ResourceTier, ResourceFactor, FactorValue)
+    main_menu()
+#    while True:
+#        try:
+#            ResourceFactor = str(input("Which resource factor? :"))
+#            if ResourceFactor.upper() == "PROFIT":
+#                FactorValue = input("Enter profit percentage: ")
+#            elif ResourceFactor.upper() == "SELLVOLUME":
+#                FactorValue = input("Enter sell volume: ")
+#            elif ResourceFactor.upper() == "DAILYLIMIT":
+#                FactorValue = input("Enter daily limit: ")
+#            elif ResourceFactor.upper() == "BUYVOLUME":
+#                FactorValue = input("Enter buyvolume: ")
+#        except ValueError:
+#            print("Invalid input.")
+#            continue
+#        else:
+#            break
+
+#    ResourceDictionary[ResourceName] ={
+#        ResourceName : 
+#        {
+#            ResourceTier : 
+#            {
+#                ResourceFactor : FactorValue
+#            }
+#        }
+#    }
+#    print(ResourceName,ResourceTier, ResourceFactor, FactorValue)
+# Name of resource/item // Ore, Wood, Fiber, Stone, Hide //, Tier + Enchantment // T2.0 - T8.3 //, Factors that will affect the decision // Proft, SellVolume, DailyLimit, BuyVolume //
+    
+#    print(ResourceDictionary)
+#    print(ResourceName, ResourceTier, ResourceFactor, FactorValue)
 # ResourceTierDictionary[ResourceTier] = {ResourceTier : 2.0, 3.0, 4.0, 4.1, 4.2, 4.3, 5.0, 5.1, 5.2, 5.3, 6.1, 6.2, 6.3, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3}
 # ResourceFactor : Proft, SellVolume, DailyLimit, BuyVolume
 # Proccessing of data
 def decision_maker():
-    str(input("What type of resource? "))
-    str(input("What tier and enchantment of the resource? "))
-    str(input("By which resource factor would you like to filter it by?"))
-    
+#    print(ResourceDictionary, ResourceDictionary.get("Ore"))
+    FactorValue = ResourceDictionary.values()
+    BestResource = max(FactorValue)
+    print('The best resource to craft is :', BestResource)
+
+# ResourceDictionary[ResourceName[ResourceTier[ResourceFactor[FactorValue]]]]
 # Displaying of result
 # Simple Menu
 def exit():
